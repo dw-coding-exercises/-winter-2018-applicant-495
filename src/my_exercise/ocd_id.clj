@@ -34,3 +34,4 @@
 
 ;; TODO: use google's geocoding api to get county
 ;; TODO: county, place, and state are pretty similar, collapse those into 1 function
+;; TODO: we aren't sanitizing any of the inputs at this point

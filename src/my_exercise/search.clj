@@ -17,10 +17,9 @@
    (for [election (elections/election-data (ocd/address->ocd-ids (:params request)))]
      [:div
        [:h3 (:description election)]
-       [:ul
-         [:li "Date: " (:date election)]
-         [:li [:a {:href (:website election)} "Election Website"]]]])])
-         ; TODO: add additional information about each election here (registration, id requirements, etc)
+       [:p "Voting Deadline: " (:date election)]
+       [:a {:href (:website election)} "Election Website"]])])
+       ; TODO: add additional information about each election here (registration, id requirements, etc)
 
 (defn page [request]
   (html5

@@ -12,7 +12,7 @@
   (let [extraction-fields [:date :description :website]]
     (select-keys edn-single-election extraction-fields)))
 
-(defn extract-election-data
+(defn extract-election-basic-data
   "Extracts information for all elections from a provided EDN response from election API"
   [edn-response]
   (map extract-single-election-data edn-response))
@@ -21,5 +21,8 @@
   [ocd-ids]
   (->> ocd-ids
     (map ocd-id-request-election)
-    (map extract-election-data)
+    (map extract-election-basic-data)
     (flatten)))
+
+;; TODO: need some simple tests around extraction of data (specifically if we're missing data)
+;; TODO: extract additional voting information (how to vote, how to register, etc)
