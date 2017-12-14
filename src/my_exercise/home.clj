@@ -128,6 +128,12 @@
               :type "text"
               :name "zip"
               :size "10"}]]
+    [:div
+     [:label {:for "county-field"} "County:"]
+     [:input {:id "county-field"
+              :type "text"
+              :name "county"}]]
+
     [:div.button
      [:button {:type "submit"} "Search"]]]])
 
