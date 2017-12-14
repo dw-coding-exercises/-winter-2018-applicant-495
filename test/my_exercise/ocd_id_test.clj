@@ -37,8 +37,7 @@
 
 (deftest ocd-state-test
   (testing "empty state -> nil"
-    (is (nil? (ocd-state "" "")))
-    (is (nil? (ocd-state "" nil))))
+    (is (nil? (ocd-state "" ""))))
   (testing "state builds valid ocd-id"
     (is (=
            (str default-ocd-id "/state:co")
@@ -46,9 +45,16 @@
 
 (deftest ocd-place-test
   (testing "empty place -> nil"
-    (is (nil? (ocd-place "" "")))
-    (is (nil? (ocd-place "" nil))))
+    (is (nil? (ocd-place "" ""))))
   (testing "place builds valid ocd-id"
     (is (=
            "prefix/place:denver"
            (ocd-place "prefix" "Denver")))))
+
+(deftest ocd-county-test
+  (testing "empty count -> nil"
+    (is (nil? (ocd-county "" ""))))
+  (testing "county builds valid ocd-id"
+    (is (=
+          "prefix/county:arapahoe"
+          (ocd-county "prefix" "Arapahoe")))))
