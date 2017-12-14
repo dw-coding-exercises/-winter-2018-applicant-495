@@ -1,6 +1,7 @@
 (ns my-exercise.search
   (:require [hiccup.page :refer [html5]]
-            [my-exercise.ocd-id :as ocd]))
+            [my-exercise.ocd-id :as ocd]
+            [my-exercise.elections :as elections]))
 
 (defn header [_]
   [:head
@@ -12,7 +13,10 @@
 
 (defn request-output [request]
   [:div {:class "raw-request-output"}
-   [:li (str (:params request))]])
+   [:li (str (:params request))]
+   [:li (doall (ocd/address->ocd-ids (:params request)))]
+   ;; FYI still carrying around the anti-forgery token at this point
+   [:li (doall (elections/election-data (ocd/address->ocd-ids (:params request))))]])
 
 (defn page [request]
   (html5
