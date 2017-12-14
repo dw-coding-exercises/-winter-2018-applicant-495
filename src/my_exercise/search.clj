@@ -13,10 +13,14 @@
 
 (defn request-output [request]
   [:div {:class "raw-request-output"}
-   [:li (str (:params request))]
-   [:li (doall (ocd/address->ocd-ids (:params request)))]
-   ;; FYI still carrying around the anti-forgery token at this point
-   [:li (doall (elections/election-data (ocd/address->ocd-ids (:params request))))]])
+   [:h2 "Current Elections"]
+   (for [election (elections/election-data (ocd/address->ocd-ids (:params request)))]
+     [:div
+       [:h3 (:description election)]
+       [:ul
+         [:li "Date: " (:date election)]
+         [:li [:a {:href (:website election)} "Election Website"]]]])])
+         ; TODO: add additional information about each election here (registration, id requirements, etc)
 
 (defn page [request]
   (html5
